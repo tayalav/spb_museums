@@ -86,15 +86,14 @@ map.addControl(new mapboxgl.NavigationControl());
 map.on('load', function () {
 console.log(map.getStyle());
 
-toggleLayer(['education', 'educationbg'], 'Образовательные программы');
-toggleLayer(['family', 'familybg'], 'Семейные программы');
-toggleLayer(['catering', 'cateringbg'], 'Кэйтеринг');
-toggleLayer(['dischildren', 'dischildrenbg'], 'Программы для детей с ограниченными возможностями');
-toggleLayer(['7-18', '7-18bg'], 'Программы для школьников (7-18 лет)');
-toggleLayer(['7', '7bg'], 'Программы для дошкольников (до 7 лет)');
-toggleLayer(['children', 'childrenbg'], 'Музеи с детскими программами');
 toggleLayer(['alldata'], 'Все музеи');
-
+toggleLayer(['children', 'childrenbg'], 'Музеи с детскими программами');
+toggleLayer(['7', '7bg'], 'Программы для дошкольников');
+toggleLayer(['7-18', '7-18bg'], 'Программы для школьников');
+toggleLayer(['family', 'familybg'], 'Семейные программы');
+toggleLayer(['education', 'educationbg'], 'Образовательные программы');
+toggleLayer(['dischildren', 'dischildrenbg'], 'Программы для детей с ограниченными возможностями');
+toggleLayer(['catering', 'cateringbg'], 'Кэйтеринг');
 
 function toggleLayer(ids, name) {
     var link = document.createElement('a');
