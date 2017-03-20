@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title></title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.32.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.32.1/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        body { margin:0; padding:0; }
+        #map { position:absolute; top:0; bottom:0; width:100%; }
+    </style>
+</head>
+<body>
+<style>
+    #menumap {
+        position: absolute;
+        background: #fff;
+        padding: 6px;
+        width: 170px;
+        font-family: 'HelveticaNeue-Light';
+        color: #111;
+          }
+          #menu {
+              background: #fff;
+              position: absolute;
+              z-index: 1;
+              top: 10px;
+              left: 10px;
+              width: 170px;
+              border: 1px solid rgba(0,0,0,0.4);
+              font-family: 'HelveticaNeue-Light';
+          }
+
+          #menu a {
+              font-size: 14px;
+              color: #333;
+              display: block;
+              margin: 0;
+              padding: 0;
+              padding: 10px;
+              text-decoration: none;
+              border-bottom: 1px solid rgba(0,0,0,0.4);
+              text-align: center;
+          }
+
+          #menu a:last-child {
+              border: none;
+          }
+
+          #menu a:hover {
+              /*background-color: #e9e9e9;*/
+              background-color: #ddd;
+              color: #404040;
+          }
+
+          #menu a.active {
+              background-color: #3b99fc;
+              color: #fff;
+          }
+
+          #menu a.active:hover {
+              /*background: #3b99fc;*/
+              background-color: #3b99fc;
+          }
+
+</style>
+<div id='map'></div>
+<!-- <div id='menumap'>
+    <p align="center">Красивый Петербург</p>
+</div> -->
+<nav id="menu"></nav>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1Ijoid2Fsa21hcCIsImEiOiJjaXI0d285eXIwMDR1aHRtOWQ3YWE3d2JtIn0.pqyo1f-gocUK9i819vmQBQ';
+var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/walkmap/cj0hn4l6t00bu2rn479399xfv',
+    zoom: 11,
+    center: [30.293,59.936],
+    minZoom: 10,
+    maxZoom: 18,
+});
+
+map.addControl(new mapboxgl.NavigationControl());
+
+map.on('load', function () {
+console.log(map.getStyle());
+
+toggleLayer(['education', 'educationbg'], 'Образовательные программы');
+toggleLayer(['family', 'familybg'], 'Семейные программы');
+toggleLayer(['catering', 'cateringbg'], 'Катеринг');
+toggleLayer(['dischildren', 'dischildrenbg'], 'Программы для детей с ограниченными возможностями');
+toggleLayer(['7-18', '7-18bg'], 'Программы для школьников (7-18 лет)');
+toggleLayer(['7', '7bg'], 'Программы для дошкольников (до 7 лет)');
+toggleLayer(['children', 'childrenbg'], 'Музеи с детскими программами');
+toggleLayer(['alldata'], 'Все музеи');
+
+
+function toggleLayer(ids, name) {
+    var link = document.createElement('a');
+    link.href = '#';
+    // link.className = 'active';
+    link.textContent = name;
+
+    link.onclick = function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        for (layers in ids){
+            var visibility = map.getLayoutProperty(ids[layers], 'visibility');
+
+            if (visibility === 'visible') {
+                map.setLayoutProperty(ids[layers], 'visibility', 'none');
+                this.className = '';
+            } else {
+                this.className = 'active';
+                map.setLayoutProperty(ids[layers], 'visibility', 'visible');
+            }
+         }
+
+    };
+
+    var layers = document.getElementById('menu');
+    layers.appendChild(link);
+}
+});
+
+ </script>
+</body>
+</html>
