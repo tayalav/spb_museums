@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title></title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.32.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.32.1/mapbox-gl.css' rel='stylesheet' />
+    <style>
+      body { margin:0; padding:0; }
+      #map { position:absolute; top:0; bottom:0; width:100%; }
+    </style>
+</head>
+<body>
+
+    <style>
+    h2,
+    h3 {
+      margin: 10px;
+      font-size: 1.2em;
+    }
+
+    h3 {
+      font-size: 1em;
+    }
+
+    p {
+      font-size: 0.85em;
+      margin: 10px;
+      text-align: left;
+    }
+
+    /**
+    * Set rules for how the map overlays
+    * (info box and legend) will be displayed
+    * on the page. */
+    .map-overlay {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.8);
+      margin-right: 20px;
+      font-family: Arial, sans-serif;
+      overflow: auto;
+      border-radius: 3px;
+    }
+
+    #features {
+      top: 0;
+      height: 100px;
+      margin-top: 20px;
+      width: 250px;
+    }
+
+    #legend {
+      padding: 10px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+      line-height: 18px;
+      height: 150px;
+      margin-bottom: 40px;
+      width: 100px;
+    }
+
+    .legend-key {
+      display: inline-block;
+      border-radius: 20%;
+      width: 10px;
+      height: 10px;
+      margin-right: 5px;
+    }
+
+    </style>
+
+<div id='map'></div>
+<div class='map-overlay' id='features'><h2>US population density</h2><div id='pd'><p>Hover over a state!</p></div></div>
+<div class='map-overlay' id='legend'></div>
+
+<script>
+
+mapboxgl.accessToken = 'pk.eyJ1Ijoid2Fsa21hcCIsImEiOiJjaXI0d285eXIwMDR1aHRtOWQ3YWE3d2JtIn0.pqyo1f-gocUK9i819vmQBQ';
+var map = new mapboxgl.Map({
+  container: 'map',
+    style: 'mapbox://styles/walkmap/cj0hn4l6t00bu2rn479399xfv',
+    zoom: 8,
+    center: [30.293,59.936],
+    minZoom: 8,
+    maxZoom: 18,
+});
+
+map.on('load', function() {
+  // the rest of the code will go in here
+
+  var layers = ['spb0', 'spb<5','spb<10', 'spb<20', 'spb<30', 'spb32', 'spb69'];
+
+  layers.forEach(function(layer) {
+    var color = map.getPaintProperty(layer, 'fill-color');
+    var item = document.createElement('div');
+    var key = document.createElement('span');
+    key.className = 'legend-key';
+    key.style.backgroundColor = color;
+
+    var value = document.createElement('span');
+    value.innerHTML = layer;
+    item.appendChild(key);
+    item.appendChild(value);
+    legend.appendChild(item);
+
+  });
+  });
+
+ </script>
+</body>
+</html>
