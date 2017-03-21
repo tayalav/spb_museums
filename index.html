@@ -188,6 +188,25 @@
           legend.appendChild(item);
         });
       });
+      var popup = new mapboxgl.Popup({
+        closeButton: false,
+        closeOnClick: false
+      });
+
+      map.on('mousemove', function (e) {
+        var features = map.queryRenderedFeatures(e.point, { layers: ['0', '1-5', '5-10', '10-20', '20-30'] });
+        map.getCanvas().style.cursor = (features.length) ? 'pointer' : '';
+
+        if (!features.length) {
+          popup.remove();
+          return;
+        }
+
+        popup
+          .setLngLat(map.unproject(e.point))
+          .setHTML(features.map(function(feature) {return feature.properties.name}))
+            .addTo(map);
+      });
     </script>
   </body>
 </html>
