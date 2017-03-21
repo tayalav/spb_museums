@@ -11,14 +11,14 @@ var map = new mapboxgl.Map({
 map.addControl(new mapboxgl.NavigationControl());
 map.on('load', function () {
   toggleLayer('1', ['alldata'], 'Все музеи');
-  toggleLayer('2', ['children', 'childrenbg'], 'Музеи с детскими программами');
+  toggleLayer('2', ['children'], 'Музеи с детскими программами');
   toggleLayer('3', ['7', '7bg'], 'Программы для дошкольников');
   toggleLayer('4', ['7-18', '7-18bg'], 'Программы для школьников');
   toggleLayer('5', ['family', 'familybg'], 'Семейные программы');
   toggleLayer('6', ['education', 'educationbg'], 'Образовательные программы');
   toggleLayer('7', ['dischildren', 'dischildrenbg'], 'Программы для детей с ограниченными возможностями');
   toggleLayer('8', ['catering', 'cateringbg'], 'Кейтеринг');
-  toggleLayer('9', ['0', '1-5', '5-10', '10-20', '20-30', 'okruga_bound'], 'Музеи по муниципальным округам');
+  toggleLayer('9', ['0', '1-5', '6-10', '11-20', '21-30', 'okruga_bound'], 'Музеи по муниципальным округам');
 
   function toggleLayer(id, ids, name) {
     var link = document.createElement('a');
@@ -51,7 +51,7 @@ map.on('load', function () {
     layers.appendChild(link);
   }
 
-  var layers = ['0', '1-5', '5-10', '10-20', '20-30'];
+  var layers = ['0', '1-5', '6-10', '11-20', '21-30'];
   layers.forEach(function (layer) {
     var color = map.getPaintProperty(layer, 'fill-color');
     var item = document.createElement('div');
@@ -72,7 +72,7 @@ var popup = new mapboxgl.Popup({
 });
 
 map.on('mousemove', function (e) {
-  var features = map.queryRenderedFeatures(e.point, { layers: ['0', '1-5', '5-10', '10-20', '20-30'] });
+  var features = map.queryRenderedFeatures(e.point, { layers: ['0', '1-5', '6-10', '11-20', '21-30'] });
   map.getCanvas().style.cursor = (features.length) ? 'pointer' : '';
 
   if (!features.length) {
