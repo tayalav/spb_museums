@@ -1,0 +1,104 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#map {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+#menumap {
+  position: absolute;
+  background: #fff;
+  padding: 6px;
+  width: 170px;
+  font-family: 'HelveticaNeue-Light';
+  color: #111;
+}
+
+#menu {
+  background: #fff;
+  position: absolute;
+  z-index: 1;
+  top: 10px;
+  left: 10px;
+  width: 170px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  font-family: 'HelveticaNeue-Light';
+}
+
+#menu a {
+  font-size: 14px;
+  color: #333;
+  display: block;
+  margin: 0;
+  padding: 0;
+  padding: 10px;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  text-align: center;
+}
+
+#menu a:last-child {
+  border: none;
+}
+
+#menu a:hover {
+  /*background-color: #e9e9e9;*/
+  background-color: #ddd;
+  color: #404040;
+}
+
+#menu a.active {
+  background-color: #3b99fc;
+  color: #fff;
+}
+
+#menu a.active:hover {
+  /*background: #3b99fc;*/
+  background-color: #3b99fc;
+}
+
+/**
+* Set rules for how the map overlays
+* (info box and legend) will be displayed
+* on the page. */
+.map-overlay {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.8);
+  margin-right: 20px;
+  font-family: 'HelveticaNeue-Light';
+  font-size: 10px;
+  overflow: auto;
+  border-radius: 3px;
+}
+
+#features {
+  top: 0;
+  height: 100px;
+  margin-top: 20px;
+  width: 250px;
+}
+
+#legend {
+  display: none;
+  padding: 10px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  line-height: 18px;
+  height: 85px;
+  margin-bottom: 40px;
+  width: 45px;
+}
+
+.legend-key {
+  display: inline-block;
+  border-radius: 20%;
+  width: 10px;
+  height: 10px;
+  margin-right: 5px;
+}
