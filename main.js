@@ -17,8 +17,8 @@ map.on('load', function () {
   toggleLayer('5', ['family', 'familybg'], 'Семейные программы');
   toggleLayer('6', ['education', 'educationbg'], 'Образовательные программы');
   toggleLayer('7', ['dischildren', 'dischildrenbg'], 'Программы для детей с ограниченными возможностями');
-  toggleLayer('8', ['catering', 'cateringbg'], 'Кэйтеринг');
-  toggleLayer('9', ['0', '1-5', '5-10', '10-20', '20-30', 'okruga_bound'], 'Музеи по городским округам');
+  toggleLayer('8', ['catering', 'cateringbg'], 'Кейтеринг');
+  toggleLayer('9', ['0', '1-5', '5-10', '10-20', '20-30', 'okruga_bound'], 'Музеи по муниципальным округам');
 
   function toggleLayer(id, ids, name) {
     var link = document.createElement('a');
